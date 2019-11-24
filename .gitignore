@@ -1,3 +1,7 @@
+# Application specific
+*.jpg
+*.json
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -36,6 +40,9 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
+
+# Jetbrains
+.idea
 
 # Unit test / coverage reports
 htmlcov/
@@ -123,3 +130,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+.idea/workspace.xml
+.idea/vcs.xml
+*.xml
+.idea/vcs.xml

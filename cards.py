@@ -2,13 +2,14 @@ import requests
 from os import path
 import time
 import json
+import settings
 
 
 class CardManager:
 
     def get_json_file(self):
         time.sleep(1)
-        url = 'https://db.ygoprodeck.com/api/v5/cardinfo.php'
+        url = settings.api_url
         r = requests.get(url, stream=True)
         if r.status_code == 200:
             with open('./cards.json', 'wb') as f:
@@ -18,12 +19,12 @@ class CardManager:
             print('Request failed')
 
     def download_card_image(self, card_id):
-        if not path.exists(f'cards/{card_id["id"]}.jpg'):
+        if not path.exists(f'./cards/{card_id["id"]}.jpg'):
             time.sleep(1)
-            url = f'https://storage.googleapis.com/ygoprodeck.com/pics/{card_id["id"]}.jpg'
+            url = settings.api_images_url + f'{card_id["id"]}.jpg'
             r = requests.get(url, stream=True)
             if r.status_code == 200:
-                with open(f'cards/{card_id["id"]}.jpg', 'wb') as image:
+                with open(f'./cards/{card_id["id"]}.jpg', 'wb') as image:
                     for chunk in r.iter_content(1024):
                         image.write(chunk)
             else:
